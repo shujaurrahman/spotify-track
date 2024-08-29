@@ -8,7 +8,7 @@ $dotenv->load();
 
 $clientId = $_ENV['SPOTIFY_CLIENT_ID'];
 $clientSecret = $_ENV['SPOTIFY_CLIENT_SECRET'];
-$tokenFilePath = 'tokens.json'; // Path to the JSON file storing tokens
+$tokenFilePath = '../tokens.json'; // Path to the JSON file storing tokens
 
 // Fetch tokens from JSON file
 function fetchTokensFromJson() {

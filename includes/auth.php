@@ -1,9 +1,5 @@
 <?php
 session_start();
-ini_set('display_errors', 1); // Display errors on the screen
-ini_set('display_startup_errors', 1); // Display startup errors
-error_reporting(E_ALL); // Report all types of errors
-
 require 'vendor/autoload.php'; // Use dotenv for environment variables
 
 use Dotenv\Dotenv;
@@ -14,7 +10,7 @@ $dotenv->load();
 $clientId = $_ENV['SPOTIFY_CLIENT_ID'];
 $clientSecret = $_ENV['SPOTIFY_CLIENT_SECRET'];
 $redirectUri = $_ENV['SPOTIFY_REDIRECT_URI'];
-$tokenFilePath = './includes/tokens.json';
+$tokenFilePath = 'tokens.json';
 
 // Exchange the authorization code for access and refresh tokens
 function exchangeAuthCodeForTokens($authCode) {
