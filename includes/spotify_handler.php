@@ -78,7 +78,7 @@ function fetchTrack($accessToken) {
 
 // Display track information
 function displayTrack($track, $isCurrentlyPlaying) {
-    $headerText = $isCurrentlyPlaying ? 'Now Playing' : 'Last Played Track';
+    $headerText = $isCurrentlyPlaying ? 'Now Playing' : 'Last Played';
     $trackName = htmlspecialchars($track->name);
     $artistName = htmlspecialchars($track->artists[0]->name);
     $albumName = htmlspecialchars($track->album->name);

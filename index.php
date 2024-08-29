@@ -15,6 +15,7 @@
             <!-- Empty container to display the currently playing track -->
             <div id="spotify-player"></div>
         </div>
+        <a href="https://blog-shujaurrahman.vercel.app/post.html?postUrl=.%2Fposts%2F2024-08-30.md&postTitle=Integrate%20Spotify%20with%20Your%20Website%3A%20A%20Comprehensive%20Guide" class="authorize-link">Blog : How to display Spotify Track </a>
     </div>
 
     <!-- JavaScript for auto-updating the content every 30 seconds -->
@@ -35,7 +36,7 @@
         updateSpotifyPlayer();
 
         // Set up the interval to refresh every 30 seconds (30000 milliseconds)
-        setInterval(updateSpotifyPlayer, 1200000);
+        setInterval(updateSpotifyPlayer, 300000);
     </script>
 </body>
 </html>

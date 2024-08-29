@@ -25,7 +25,6 @@ a {
 
 a:hover {
     background-color: #1db954;
-    color: #fff;
 }
 
 .authorize-link, .spotify {
@@ -64,7 +63,6 @@ a:hover {
 .track-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #fff;
     border-radius: 6px;
     padding: 10px;
