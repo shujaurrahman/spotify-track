@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;700&family=Geist+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Geist', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #1db954;
+    color: #fff;
+}
+
+.authorize-link, .spotify {
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.authorize-link {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.spotify {
+    width: 450px;
+    padding: 20px;
+}
+
+.spotify-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #1db954;
+}
+
+.spotify-header svg {
+    stroke: #1db954;
+}
+
+#spotify-player {
+    width: 100%;
+}
+
+.track-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.track-card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.track-info {
+    margin-left: 10px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 15px !important;
+}
+
+.music-icon {
+    font-size: 24px;
+    animation: musicAnimation 4s infinite linear;
+}
+
+@keyframes musicAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
