@@ -6,8 +6,8 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$clientId = $_ENV['SPOTIFY_CLIENT_ID'];
-$clientSecret = $_ENV['SPOTIFY_CLIENT_SECRET'];
+$clientId = '5fe8f8ff8b56468f8c9d4e0b77197faa';
+$clientSecret = '2b7f7a36211149c4b8b110050890b8b2';
 $tokenFilePath = '../tokens.json'; // Path to the JSON file storing tokens
 
 // Fetch tokens from JSON file
@@ -33,14 +33,21 @@ function refreshAccessToken($refreshToken) {
     return $response !== FALSE ? json_decode($response, true) : [];
 }
 
-// Save tokens to JSON file
-function saveTokensToJson($tokenData) {
+// Save access token and its expiration time to JSON file
+function saveAccessTokenToJson($accessToken, $expiresIn) {
     global $tokenFilePath;
-    file_put_contents($tokenFilePath, json_encode([
-        'access_token' => $tokenData['access_token'],
-        'refresh_token' => $tokenData['refresh_token'] ?? null,
-        'expires_in' => time() + $tokenData['expires_in'],
-    ]));
+    
+    // Fetch existing tokens to retain the refresh token
+    $existingTokens = fetchTokensFromJson();
+    
+    // Save only the access token and expiration time
+    $tokensToSave = [
+        'access_token' => $accessToken,
+        'refresh_token' => $existingTokens['refresh_token'] ?? null, // Retain the existing refresh token
+        'expires_in' => time() + $expiresIn,
+    ];
+
+    file_put_contents($tokenFilePath, json_encode($tokensToSave));
 }
 
 // Fetch currently playing or last played track
@@ -108,11 +115,20 @@ $tokens = fetchTokensFromJson();
 $accessToken = $tokens['access_token'] ?? null;
 $refreshToken = $tokens['refresh_token'] ?? null;
 
+// Check if the access token is expired
 if (!$accessToken || ($tokens['expires_in'] ?? 0) < time()) {
-    $tokenData = refreshAccessToken($refreshToken);
-    if (!empty($tokenData)) {
-        saveTokensToJson($tokenData);
-        $accessToken = $tokenData['access_token'];
+    if ($refreshToken) {
+        $tokenData = refreshAccessToken($refreshToken);
+        if (!empty($tokenData['access_token'])) {
+            saveAccessTokenToJson($tokenData['access_token'], $tokenData['expires_in']);
+            $accessToken = $tokenData['access_token'];
+        } else {
+            echo '<p>Failed to refresh the access token.</p>';
+            exit;
+        }
+    } else {
+        echo '<p>Refresh token not available.</p>';
+        exit;
     }
 }
 
