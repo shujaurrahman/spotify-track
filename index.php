@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <!-- Authorize Link -->
-        <a href="access.php" class="authorize-link">Authorize</a>
+        <a href="access.php" class="authorize-link">Authorize [Click, Only if shows below token not fetched.]</a>
 
         <div class="spotify">
             <!-- Empty container to display the currently playing track -->
