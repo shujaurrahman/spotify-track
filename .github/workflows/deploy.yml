@@ -1,0 +1,32 @@
+name: Deploy to shujaurrahman.me
+
+on:
+  push:
+    branches:
+      - main  # Adjust if you want to use a different branch for deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install PHP (optional for linting)
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'  # Use PHP version compatible with your server
+
+    - name: Validate PHP Syntax (optional)
+      run: |
+        find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Deploy to InfinityFree via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ftpupload.net  # Replace with actual FTP server
+        username: if0_36994813  # Your InfinityFree username
+        password: ${{ secrets.FTP_PASSWORD }}  # Use a GitHub secret for FTP password
+        local-dir: ./  # Assuming your repo's root contains the main domain files
+        server-dir: /spotify.shujaurrahman.me//htdocs  # Target folder on your FTP server
