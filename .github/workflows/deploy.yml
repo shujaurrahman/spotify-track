@@ -29,4 +29,4 @@ jobs:
         username: if0_36994813  # Your InfinityFree username
         password: ${{ secrets.FTP_PASSWORD }}  # Use a GitHub secret for FTP password
         local-dir: ./  # Assuming your repo's root contains the main domain files
-        server-dir: /spotify.shujaurrahman.me//htdocs  # Target folder on your FTP server
+        server-dir: /spotify.shujaurrahman.me/htdocs/  # Ensure it ends with a /
